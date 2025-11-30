@@ -42,6 +42,7 @@ function createFirestoreStore(collectionName, transformFn) {
 export const players = createFirestoreStore('players', (data) => {
     // FILTRO: Si es DM, devolvemos null para que no se agregue a la lista
     if (data.role === 'DM') return null;
+    if(data.position === null) return null
 
     return {
         id: data.id,
