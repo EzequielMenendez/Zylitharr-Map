@@ -1,6 +1,7 @@
 <script>
     import Acciones from "./components/Acciones.svelte";
     import Mapa from "./components/Mapa.svelte";
+    import NuevoMarcador from "./components/NuevoMarcador.svelte";
 
     let isSidebarOpen = false;
 
@@ -26,3 +27,5 @@
     </button>
     </main>
 </div>
+
+<NuevoMarcador />

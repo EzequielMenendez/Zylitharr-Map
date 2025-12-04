@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import { getFirestore, collection, onSnapshot, query } from "firebase/firestore";
+import { getFirestore, collection, onSnapshot, query, addDoc } from "firebase/firestore";
 import app from "../firebase"; // Importamos la configuración de Firebase
 
 // Inicializamos la referencia a la base de datos
@@ -63,3 +63,22 @@ export const markers = createFirestoreStore('markers', (data) => {
         y: data.position?.y || 0
     };
 });
+
+export async function addMarker(markerData) {
+    try {
+        const docRef = await addDoc(collection(db, "markers"), {
+            name: markerData.name,
+            type: markerData.type,
+            position: {
+                x: markerData.x,
+                y: markerData.y
+            },
+            createdAt: Date.now()
+        });
+        console.log("Marcador creado con ID: ", docRef.id);
+        return docRef.id;
+    } catch (e) {
+        console.error("Error al añadir marcador: ", e);
+        throw e;
+    }
+}
