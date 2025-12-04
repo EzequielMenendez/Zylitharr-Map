@@ -60,6 +60,15 @@
                     {$user.name || 'Aventurero'}
                 </div>
 
+                {#if $user.role === 'DM'}
+                    <button 
+                        on:click={() => { menuOpen = false; push('/users'); }}
+                        class="w-full text-left px-4 py-2 text-sm text-amber-200 bg-green-950/30 hover:bg-green-800 hover:text-amber-100 transition-colors flex items-center gap-2 border-b border-green-800"
+                    >
+                        👥 Gestionar Usuarios
+                    </button>
+                {/if}
+
                 {#if $user.role !== 'DM'}
                     <button 
                         on:click={goToProfile}

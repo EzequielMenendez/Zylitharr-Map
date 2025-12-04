@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import { getFirestore, collection, onSnapshot, query, addDoc } from "firebase/firestore";
+import { getFirestore, collection, onSnapshot, query, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
 import app from "../firebase"; // Importamos la configuración de Firebase
 
 // Inicializamos la referencia a la base de datos
@@ -42,12 +42,12 @@ function createFirestoreStore(collectionName, transformFn) {
 export const players = createFirestoreStore('players', (data) => {
     // FILTRO: Si es DM, devolvemos null para que no se agregue a la lista
     if (data.role === 'DM') return null;
-    if(data.position === null) return null
 
     return {
         id: data.id,
         name: data.name,
         role: data.role,
+        movimiento: data.movimiento || false, // <--- AGREGAR ESTO
         x: data.position?.x || 0,
         y: data.position?.y || 0
     };
@@ -79,6 +79,25 @@ export async function addMarker(markerData) {
         return docRef.id;
     } catch (e) {
         console.error("Error al añadir marcador: ", e);
+        throw e;
+    }
+}
+
+export async function updatePlayer(uid, data) {
+    try {
+        const playerRef = doc(db, "players", uid);
+        await updateDoc(playerRef, data);
+    } catch (e) {
+        console.error("Error actualizando jugador:", e);
+        throw e;
+    }
+}
+
+export async function deletePlayer(uid) {
+    try {
+        await deleteDoc(doc(db, "players", uid));
+    } catch (e) {
+        console.error("Error eliminando jugador:", e);
         throw e;
     }
 }
