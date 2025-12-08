@@ -29,12 +29,12 @@
 <header class="w-full h-16 bg-green-900 text-amber-50 border-b-4 border-green-950 shadow-lg flex items-center justify-between px-4 md:px-8 z-50 relative">
     
     <!-- Lado Izquierdo: Título -->
-    <div class="flex items-center gap-2 cursor-default select-none">
+    <button class="flex items-center gap-2 cursor-pointer select-none" on:click={()=>push('/')}>
         <span class="text-2xl drop-shadow-md">⚔️</span>
         <h1 class="text-xl md:text-2xl font-serif font-bold tracking-wider uppercase drop-shadow-md text-amber-100">
         Zylitharr
         </h1>
-    </div>
+    </button>
 
     <!-- Lado Derecho: Menú de Usuario -->
     <div class="relative">

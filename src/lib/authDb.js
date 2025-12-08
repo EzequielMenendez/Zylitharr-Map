@@ -27,7 +27,7 @@ export const createPlayerAccount = async (email, password, name) => {
             name: name,
             email: email,
             role: "PLAYER",
-            movimiento: false,
+            movimiento: true,
             position: null,
             color: 'bg-gray-500',
             createdAt: Date.now()

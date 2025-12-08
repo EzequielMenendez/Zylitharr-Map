@@ -29,7 +29,7 @@
     }
 </script>
 
-<div class="flex items-center justify-center min-h-screen bg-stone-900 bg-[url('/pattern.png')]">
+<div class="flex items-center justify-center min-h-screen bg-stone-900 bg-[url('/pattern.png')] overflow-y-auto">
     
     <!-- Tarjeta Central -->
     <div class="w-full max-w-md p-8 space-y-6 bg-green-900 border-4 border-green-950 rounded-lg shadow-2xl relative overflow-hidden">

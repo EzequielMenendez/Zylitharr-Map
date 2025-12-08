@@ -59,23 +59,24 @@
     function drawPlayers(list) {
         playerLayer.clearLayers(); 
         list.forEach(p => {
-        const html = `
-            <div class="flex flex-col items-center transition-transform hover:scale-110">
-            <div class="${p.color} w-8 h-8 rounded-full border-2 border-white shadow-[0_0_10px_rgba(0,0,0,0.5)] flex items-center justify-center text-white font-bold text-xs relative z-10">
-                ${p.name.charAt(0).toUpperCase()}
-            </div>
-            <span class="bg-black/80 text-white text-[10px] px-2 py-0.5 rounded mt-1 backdrop-blur-sm border border-gray-600 shadow-md font-sans z-20 whitespace-nowrap">
-                ${p.name}
-            </span>
-            </div>
-        `;
-        const icon = L.divIcon({
-            html: html,
-            className: '', 
-            iconSize: [40, 50],
-            iconAnchor: [20, 25]
-        });
-        L.marker([p.y, p.x], { icon }).addTo(playerLayer);
+            if(!p.x || !p.y)return
+            const html = `
+                <div class="flex flex-col items-center transition-transform hover:scale-110">
+                <div class="${p.color} w-8 h-8 rounded-full border-2 border-white shadow-[0_0_10px_rgba(0,0,0,0.5)] flex items-center justify-center text-white font-bold text-xs relative z-10">
+                    ${p.name.charAt(0).toUpperCase()}
+                </div>
+                <span class="bg-black/80 text-white text-[10px] px-2 py-0.5 rounded mt-1 backdrop-blur-sm border border-gray-600 shadow-md font-sans z-20 whitespace-nowrap">
+                    ${p.name}
+                </span>
+                </div>
+            `;
+            const icon = L.divIcon({
+                html: html,
+                className: '', 
+                iconSize: [40, 50],
+                iconAnchor: [20, 25]
+            });
+            L.marker([p.y, p.x], { icon }).addTo(playerLayer);
         });
     }
 

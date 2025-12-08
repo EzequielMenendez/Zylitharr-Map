@@ -47,9 +47,9 @@ export const players = createFirestoreStore('players', (data) => {
         id: data.id,
         name: data.name,
         role: data.role,
-        movimiento: data.movimiento || false, // <--- AGREGAR ESTO
-        x: data.position?.x || 0,
-        y: data.position?.y || 0
+        movimiento: data.movimiento || false,
+        x: data.position?.x || null,
+        y: data.position?.y || null
     };
 });
 
